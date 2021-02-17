@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class ShipMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody rigidBody;
 	[SerializeField] float mainThrustForce = 15f;
@@ -11,9 +11,32 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] Transform mainThrustTransform;
 
 	Coroutine pivotAction;
+	bool isDead = false;
+
+	private void Start()
+	{
+		ShipHealth.PlayerHasDied += OnPlayerHasDied;
+	}
+
+	private void OnDestroy()
+	{
+		ShipHealth.PlayerHasDied += OnPlayerHasDied;
+	}
+
+	private bool DeathCheck()
+	{
+		if (isDead)
+		{
+			StopAllCoroutines();
+			return isDead;
+		}
+		else return isDead;
+	}
 
 	public void OnThrust(InputAction.CallbackContext context)
 	{
+		if (DeathCheck()) return;
+
 		if (context.started)
 			StartCoroutine(nameof(Thrust));
 		if (context.canceled)
@@ -22,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
 	public void OnPivot(InputAction.CallbackContext context)
 	{
+		DeathCheck();
+
 		if (context.started)
 		{
 			if (pivotAction == null)
@@ -55,4 +80,5 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
+	private void OnPlayerHasDied(bool hasDied) { isDead = hasDied; }
 }
