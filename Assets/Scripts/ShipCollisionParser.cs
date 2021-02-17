@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipCollisionParser : MonoBehaviour
 {
-	[SerializeField] ShipHealth shipHealthController;
+	[SerializeField] ShipStatus shipStatusController;
 	[SerializeField] MeshCollider landingGearCollider;
 
 	float damageCooldown;
@@ -13,14 +13,14 @@ public class ShipCollisionParser : MonoBehaviour
 
 	private void Start()
 	{
-		ShipHealth.PlayerHasDied += OnUpdateHasDied;
+		ShipStatus.PlayerHasDied += OnUpdateHasDied;
 
-		damageCooldown = shipHealthController.GetDamageCooldown();
+		damageCooldown = shipStatusController.GetDamageCooldown();
 	}
 
 	private void OnDestroy()
 	{
-		ShipHealth.PlayerHasDied -= OnUpdateHasDied;
+		ShipStatus.PlayerHasDied -= OnUpdateHasDied;
 	}
 
 	private void OnCollisionEnter(Collision collision)
@@ -34,7 +34,7 @@ public class ShipCollisionParser : MonoBehaviour
 		if (contact == landingGearCollider && damage <= 10)
 			return;
 
-		shipHealthController.TakeDamage(damage);
+		shipStatusController.TakeDamage(damage);
 		StartCoroutine(DamageCooldown());
 	}
 

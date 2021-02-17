@@ -8,15 +8,28 @@ public class HealthDisplay : MonoBehaviour
 
 	void Start()
 	{
-		ShipHealth.PlayerHealthUpdated += OnPlayerHealthUpdated;
-		textbox = GetComponent<TMP_Text>();
+		ShipStatus.PlayerHealthUpdated += OnPlayerHealthUpdated;
 
-		OnPlayerHealthUpdated(100); // initialize with starting health
+		StartCoroutine(InitializeDisplay());
 	}
 
 	private void OnDestroy()
 	{
-		ShipHealth.PlayerHealthUpdated -= OnPlayerHealthUpdated;
+		ShipStatus.PlayerHealthUpdated -= OnPlayerHealthUpdated;
+	}
+
+	// This is called to stop the race condition of trying to pull data that hasnt
+	// been instantiated yet.
+	private IEnumerator InitializeDisplay()
+	{
+		textbox = GetComponent<TMP_Text>();
+		var shipStatus = FindObjectOfType<ShipStatus>();
+		while (shipStatus == null)
+		{
+			shipStatus = FindObjectOfType<ShipStatus>();
+			yield return new WaitForEndOfFrame();
+		}
+		OnPlayerHealthUpdated(shipStatus.GetMaxHealth());
 	}
 
 	private void OnPlayerHealthUpdated(int health)

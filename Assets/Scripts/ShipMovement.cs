@@ -5,22 +5,29 @@ using UnityEngine.InputSystem;
 
 public class ShipMovement : MonoBehaviour
 {
-    [SerializeField] Rigidbody rigidBody;
+	[SerializeField] ShipStatus shipStatusController;
+	[SerializeField] Rigidbody rigidBody;
 	[SerializeField] float mainThrustForce = 15f;
 	[SerializeField] float pivotForce = 10f;
 	[SerializeField] Transform mainThrustTransform;
 
+	float fuelDrainPerSecond;
 	Coroutine pivotAction;
 	bool isDead = false;
+	bool isEmpty = false;
 
 	private void Start()
 	{
-		ShipHealth.PlayerHasDied += OnPlayerHasDied;
+		ShipStatus.PlayerHasDied += OnPlayerHasDied;
+		ShipStatus.PlayerOutOfFuel += OnPlayerEmpty;
+
+		fuelDrainPerSecond = shipStatusController.GetFuelDrainPerSecond();
 	}
 
 	private void OnDestroy()
 	{
-		ShipHealth.PlayerHasDied += OnPlayerHasDied;
+		ShipStatus.PlayerHasDied -= OnPlayerHasDied;
+		ShipStatus.PlayerOutOfFuel -= OnPlayerEmpty;
 	}
 
 	private bool DeathCheck()
@@ -36,6 +43,11 @@ public class ShipMovement : MonoBehaviour
 	public void OnThrust(InputAction.CallbackContext context)
 	{
 		if (DeathCheck()) return;
+		if (isEmpty)
+		{
+			StopCoroutine(nameof(Thrust));
+			return;
+		}
 
 		if (context.started)
 			StartCoroutine(nameof(Thrust));
@@ -64,8 +76,9 @@ public class ShipMovement : MonoBehaviour
 
 	private IEnumerator Pivot(float direction)
 	{
-		while (true)
+		while (true && !isDead)
 		{
+			DeathCheck();
 			rigidBody.AddTorque(-transform.forward * direction * pivotForce, ForceMode.Force);
 			yield return new WaitForFixedUpdate();
 		}
@@ -73,12 +86,14 @@ public class ShipMovement : MonoBehaviour
 
 	private IEnumerator Thrust()
 	{
-		while (true)
+		while (true && !isEmpty && !isDead)
 		{
 			rigidBody.AddForceAtPosition(transform.up * mainThrustForce, mainThrustTransform.position, ForceMode.Force);
+			shipStatusController.DrainFuel(fuelDrainPerSecond * Time.deltaTime);
 			yield return new WaitForFixedUpdate();
 		}
 	}
 
 	private void OnPlayerHasDied(bool hasDied) { isDead = hasDied; }
+	private void OnPlayerEmpty(bool hasEmptied) { isEmpty = hasEmptied; }
 }
