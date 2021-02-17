@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/PlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/PlayerControls.inputactions'
 
 using System;
 using System.Collections;
@@ -140,7 +140,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""21eda49f-cf06-4bed-b08a-226e53b5738c"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Scale(factor=2),Clamp(max=1)"",
                     ""groups"": """",
                     ""action"": ""Pivot"",
                     ""isComposite"": false,
@@ -151,7 +151,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""d5f6e270-303a-4274-af04-35b405b41875"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Scale(factor=5),Clamp(max=1)"",
                     ""groups"": """",
                     ""action"": ""Pivot"",
                     ""isComposite"": false,
