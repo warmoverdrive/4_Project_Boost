@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\HealthDisplay.cs" />
     <Compile Include="Assets\Scripts\ShipCollisionParser.cs" />
     <Compile Include="Assets\Scripts\FuelSliderDisplay.cs" />
+    <Compile Include="Assets\Scripts\SafeZone.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

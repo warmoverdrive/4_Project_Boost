@@ -12,6 +12,10 @@ public class ShipStatus : MonoBehaviour
 	[Header("Fuel")]
 	[SerializeField] float maxFuel = 100;
 	[SerializeField] float fuelDrainPerSecond = 5f;
+	[Header("R&R")]
+	[SerializeField] float secondsPerTick = 1f;
+	[SerializeField] int repairPerTick = 15;
+	[SerializeField] float refuelPerTick = 10f;
 
 
 	int health;
@@ -28,6 +32,7 @@ public class ShipStatus : MonoBehaviour
 	public int GetMaxHealth() => maxHealth;
 	public float GetMaxFuel() => maxFuel;
 	public float GetFuelDrainPerSecond() => fuelDrainPerSecond;
+	public float GetSecondsPerTick() => secondsPerTick;
 
 	private void Start()
 	{
@@ -65,5 +70,20 @@ public class ShipStatus : MonoBehaviour
 		}
 
 		PlayerFuelUpdated?.Invoke(fuel);
+	}
+
+	// Repairs and Refuels the ship each call. Checks if both fuel and health are
+	// full, and returns true if R&R is complete, and false if R&R needs to continue.
+	public bool RepairAndRefuel()
+	{
+		health = Mathf.Clamp(health + repairPerTick, 0, maxHealth);
+		fuel = Mathf.Clamp(fuel + refuelPerTick, 0, maxFuel);
+		PlayerFuelUpdated?.Invoke(fuel);
+		PlayerHealthUpdated?.Invoke(health);
+
+		if (health == maxHealth && fuel == maxFuel)
+			return true;
+		else
+			return false;
 	}
 }

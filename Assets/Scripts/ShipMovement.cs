@@ -57,7 +57,7 @@ public class ShipMovement : MonoBehaviour
 
 	public void OnPivot(InputAction.CallbackContext context)
 	{
-		DeathCheck();
+		if (DeathCheck()) return;
 
 		if (context.started)
 		{
