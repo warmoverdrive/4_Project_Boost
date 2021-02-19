@@ -33,9 +33,6 @@ public class CharacterInteractionController : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (interactionEnabled == false)
-			return;
-
 		var interactable = other.GetComponent<IInteractable>();
 		if (interactable == null) 
 			return;
@@ -53,7 +50,7 @@ public class CharacterInteractionController : MonoBehaviour
 		if (!context.started)
 			return;
 		foreach (var interactable in interactableObjects)
-			interactable.Interact();
+			interactable.Interact(transform.parent.gameObject);
 	}
 
 	private IEnumerator EnabledInteractionCooldown()

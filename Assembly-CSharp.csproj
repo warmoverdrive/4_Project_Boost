@@ -60,7 +60,6 @@
     <Compile Include="Assets\Scripts\HealthDisplay.cs" />
     <Compile Include="Assets\Scripts\SafeZone.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
-    <Compile Include="Assets\Scripts\UIFaceCamera.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\ShipStatus.cs" />
     <Compile Include="Assets\Scripts\FuelSliderDisplay.cs" />

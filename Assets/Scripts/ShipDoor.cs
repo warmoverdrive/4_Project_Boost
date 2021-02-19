@@ -14,7 +14,7 @@ public class ShipDoor : MonoBehaviour, IInteractable
 		interactableUI.gameObject.SetActive(false);
 	}
 
-	public void Interact()
+	public void Interact(GameObject player)
 	{
 		controlStateManager.OnEmbark();
 		DisableInteractableUI();

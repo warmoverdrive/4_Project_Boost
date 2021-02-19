@@ -40,7 +40,7 @@ public class Elevator2Position : MonoBehaviour, IInteractable
 	}
 
 
-	public void Interact()
+	public void Interact(GameObject player)
 	{
 		if (isBusy)
 			return;
@@ -50,11 +50,12 @@ public class Elevator2Position : MonoBehaviour, IInteractable
 		else
 			target = position1;
 
-		StartCoroutine(ElevatorMove());
+		StartCoroutine(ElevatorMove(player));
 	}
 
-	private IEnumerator ElevatorMove()
+	private IEnumerator ElevatorMove(GameObject player)
 	{
+		player.transform.parent = gameObject.transform;
 		DisableInteractableUI();
 		isBusy = true;
 		indicatorLight.color = busyColor;
@@ -69,6 +70,7 @@ public class Elevator2Position : MonoBehaviour, IInteractable
 			yield return new WaitForEndOfFrame();
 		}
 
+		player.transform.parent = null;
 		isPosition1 = !isPosition1;
 		isBusy = false;
 		indicatorLight.color = waitingColor;

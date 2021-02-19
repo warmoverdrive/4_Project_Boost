@@ -22,7 +22,15 @@ public class PlayerControlStateManager : MonoBehaviour
 
     public ControlState GetControlState() => controlState;
 
-    public void OnDisembark(InputAction.CallbackContext context)
+	private void Start()
+	{
+        if (controlState == ControlState.Character)
+            Disembark();
+        if (controlState == ControlState.Ship)
+            OnEmbark();
+	}
+
+	public void OnDisembark(InputAction.CallbackContext context)
 	{
         if (!context.started)
             return;
@@ -30,13 +38,7 @@ public class PlayerControlStateManager : MonoBehaviour
         if (GetComponentInParent<Rigidbody>().velocity.magnitude > 0) // if ship moving
             return;
 
-        controlState = ControlState.Character;
-        shipCam.Priority = 0;
-        charCam.Priority = 1;
-        inputManager.SwitchCurrentActionMap("Character");
-        shipUI.enabled = false;
-        character.transform.position = shipExit.position;
-        character.SetActive(true);
+        Disembark();
 	}
 
     public void OnEmbark()
@@ -47,5 +49,16 @@ public class PlayerControlStateManager : MonoBehaviour
         inputManager.SwitchCurrentActionMap("Ship");
         shipUI.enabled = true;
         character.SetActive(false);
+    }
+
+    private void Disembark()
+	{
+        controlState = ControlState.Character;
+        shipCam.Priority = 0;
+        charCam.Priority = 1;
+        inputManager.SwitchCurrentActionMap("Character");
+        shipUI.enabled = false;
+        character.transform.position = shipExit.position;
+        character.SetActive(true);
     }
 }
