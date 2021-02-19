@@ -13,6 +13,7 @@ public class UIFaceCamera : MonoBehaviour
 
 	private void Update()
 	{
-		transform.LookAt(-mainCam.transform.position);
+		//transform.LookAt(-mainCam.transform.position);
+		transform.LookAt(-mainCam.transform.position, Vector3.up);
 	}
 }

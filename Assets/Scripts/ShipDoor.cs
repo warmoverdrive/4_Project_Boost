@@ -11,7 +11,7 @@ public class ShipDoor : MonoBehaviour, IInteractable
 	private void Start()
 	{
 		interactableUI = GetComponentInChildren<Canvas>();
-		interactableUI.enabled = false;
+		interactableUI.gameObject.SetActive(false);
 	}
 
 	public void Interact()
@@ -22,11 +22,11 @@ public class ShipDoor : MonoBehaviour, IInteractable
 
 	public void EnableInteractableUI()
 	{
-		interactableUI.enabled = true;
+		interactableUI.gameObject.SetActive(true);
 	}
 
 	public void DisableInteractableUI()
 	{
-		interactableUI.enabled = false;
+		interactableUI.gameObject.SetActive(false);
 	}
 }
