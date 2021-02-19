@@ -8,6 +8,7 @@ public class PlayerControlStateManager : MonoBehaviour
 {
     public enum ControlState { Ship, Character };
 
+    [SerializeField] ControlState controlState = ControlState.Ship;
     [SerializeField] PlayerInput inputManager;
 
     [Header("Ship Objects")]
@@ -18,7 +19,6 @@ public class PlayerControlStateManager : MonoBehaviour
     [Header("Character Objects")]
     [SerializeField] GameObject character;
     [SerializeField] CinemachineVirtualCamera charCam;
-    [SerializeField] ControlState controlState = ControlState.Ship;
 
     public ControlState GetControlState() => controlState;
 

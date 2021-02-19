@@ -42,6 +42,7 @@ public class SafeZone : MonoBehaviour
 
 	private IEnumerator RepairAndRefuel(ShipStatus status)
 	{
+		Transform parentTransform = status.transform.parent.transform;
 		var shipRB = status.GetComponentInParent<Rigidbody>();
 
 		while (true)
@@ -52,6 +53,9 @@ public class SafeZone : MonoBehaviour
 			// includes wobbles or change in angle - must be totally
 			// landed to use the platform.
 			if (shipRB.velocity.magnitude > 0)
+				continue;
+			// ensure the ship is relatively level
+			if (parentTransform.rotation.eulerAngles.z > 5 || parentTransform.rotation.eulerAngles.z < -5)
 				continue;
 			if (status.RepairAndRefuel() == true)
 				break;
