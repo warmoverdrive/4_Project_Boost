@@ -16,12 +16,12 @@ TagManager:
   - 
   - PostProcessing
   - Not in Reflection
-  - 
-  - Player
+  - Character
+  - Ship
   - Terrain
   - SafeZones
   - Hazards
-  - 
+  - Interactable
   - 
   - 
   - 

@@ -20,7 +20,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Thrust"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""43a83c72-1480-4a29-99ee-33d4cf3f15b1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -28,9 +28,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Pivot"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""19fcccd2-899e-4b37-8dc8-6a7cc126c743"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -239,7 +239,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""90090c28-5513-4b9d-8b73-f318b14c2d46"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

@@ -25,6 +25,8 @@ public class SafeZone : MonoBehaviour
 		if (collision.GetContact(0).otherCollider.tag == "LandingGear")
 		{
 			var status = collision.gameObject.GetComponentInChildren<ShipStatus>();
+			if (status == null)
+				return;
 			RandR = StartCoroutine(RepairAndRefuel(status));
 		}
 	}
@@ -41,6 +43,7 @@ public class SafeZone : MonoBehaviour
 	private IEnumerator RepairAndRefuel(ShipStatus status)
 	{
 		var shipRB = status.GetComponentInParent<Rigidbody>();
+
 		while (true)
 		{
 			yield return new WaitForSeconds(status.GetSecondsPerTick());

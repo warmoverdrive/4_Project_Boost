@@ -6,6 +6,7 @@ public class ShipCollisionParser : MonoBehaviour
 {
 	[SerializeField] ShipStatus shipStatusController;
 	[SerializeField] MeshCollider landingGearCollider;
+	[SerializeField] LayerMask damagerLayers;
 
 	float damageCooldown;
 	bool inDamageCooldown = false;
@@ -28,6 +29,10 @@ public class ShipCollisionParser : MonoBehaviour
 		if (isDead || inDamageCooldown) return;
 
 		Collider contact = collision.GetContact(0).thisCollider;
+
+		// check for collision layer in layermask using bitwise comparison
+		if ((damagerLayers & 1 << collision.gameObject.layer) != 1 << collision.gameObject.layer)
+			return;
 
 		var damage = collision.relativeVelocity.magnitude;
 
