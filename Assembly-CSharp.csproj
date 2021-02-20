@@ -68,7 +68,9 @@
     <Compile Include="Assets\Scripts\ShipCollisionParser.cs" />
     <Compile Include="Assets\Scripts\IInteractable.cs" />
     <Compile Include="Assets\Scripts\ShipDoor.cs" />
-    <Compile Include="Assets\Scripts\Elevator2Position.cs" />
+    <Compile Include="Assets\Scripts\ObstacleTogglePosition.cs" />
+    <Compile Include="Assets\Scripts\AccessCodeManager.cs" />
+    <Compile Include="Assets\Scripts\AccessComputer.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
