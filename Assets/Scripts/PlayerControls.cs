@@ -41,6 +41,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e34fd27-71bf-4529-b34d-bf14605277d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -228,6 +236,39 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Disembark"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3818440-258e-4d1a-b92c-5ba62dac92ab"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5bbdc95-0f45-4295-98e5-261363b205b4"",
+                    ""path"": ""<Keyboard>/pageDown"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce25e4b6-9b72-48d0-b1b4-b8c3e0f83e8c"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -460,6 +501,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Ship_Thrust = m_Ship.FindAction("Thrust", throwIfNotFound: true);
         m_Ship_Pivot = m_Ship.FindAction("Pivot", throwIfNotFound: true);
         m_Ship_Disembark = m_Ship.FindAction("Disembark", throwIfNotFound: true);
+        m_Ship_Reset = m_Ship.FindAction("Reset", throwIfNotFound: true);
         // Character
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
@@ -517,6 +559,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Ship_Thrust;
     private readonly InputAction m_Ship_Pivot;
     private readonly InputAction m_Ship_Disembark;
+    private readonly InputAction m_Ship_Reset;
     public struct ShipActions
     {
         private @PlayerControls m_Wrapper;
@@ -524,6 +567,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Thrust => m_Wrapper.m_Ship_Thrust;
         public InputAction @Pivot => m_Wrapper.m_Ship_Pivot;
         public InputAction @Disembark => m_Wrapper.m_Ship_Disembark;
+        public InputAction @Reset => m_Wrapper.m_Ship_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -542,6 +586,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Disembark.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnDisembark;
                 @Disembark.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnDisembark;
                 @Disembark.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnDisembark;
+                @Reset.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnReset;
             }
             m_Wrapper.m_ShipActionsCallbackInterface = instance;
             if (instance != null)
@@ -555,6 +602,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Disembark.started += instance.OnDisembark;
                 @Disembark.performed += instance.OnDisembark;
                 @Disembark.canceled += instance.OnDisembark;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
             }
         }
     }
@@ -613,6 +663,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnThrust(InputAction.CallbackContext context);
         void OnPivot(InputAction.CallbackContext context);
         void OnDisembark(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
     public interface ICharacterActions
     {

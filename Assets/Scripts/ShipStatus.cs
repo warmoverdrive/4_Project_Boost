@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class ShipStatus : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class ShipStatus : MonoBehaviour
 	[SerializeField] float secondsPerTick = 1f;
 	[SerializeField] int repairPerTick = 15;
 	[SerializeField] float refuelPerTick = 10f;
+	[Header("Respawn")]
+	[SerializeField] Transform respawnPoint;
+	[SerializeField] float respawnTime = 2f;
 
 
 	int health;
@@ -23,10 +27,11 @@ public class ShipStatus : MonoBehaviour
 	bool isDead = false;
 	bool isEmpty = false;
 
-	public static event Action<int> PlayerHealthUpdated;
-	public static event Action<float> PlayerFuelUpdated;
-	public static event Action<bool> PlayerHasDied;
-	public static event Action<bool> PlayerOutOfFuel;
+	public static event Action<int> ShipHealthUpdated;
+	public static event Action<float> ShipFuelUpdated;
+	public static event Action<bool> ShipHasDied;
+	public static event Action<bool> ShipOutOfFuel;
+	public static event Action ShipHasRespawned;
 
 	public float GetDamageCooldown() => damageCooldown;
 	public int GetMaxHealth() => maxHealth;
@@ -39,8 +44,8 @@ public class ShipStatus : MonoBehaviour
 		health = maxHealth;
 		fuel = maxFuel;
 
-		PlayerHealthUpdated?.Invoke(health);
-		PlayerFuelUpdated?.Invoke(fuel);
+		ShipHealthUpdated?.Invoke(health);
+		ShipFuelUpdated?.Invoke(fuel);
 	}
 
 	public void TakeDamage(float rawDamage)
@@ -52,10 +57,11 @@ public class ShipStatus : MonoBehaviour
 			health = 0;
 			Debug.LogError("Dead");
 			isDead = true;
-			PlayerHasDied?.Invoke(isDead);
+			ShipHasDied?.Invoke(isDead);
+			StartCoroutine(HandleRespawn(respawnTime));
 		}
 
-		PlayerHealthUpdated?.Invoke(health);
+		ShipHealthUpdated?.Invoke(health);
 	}
 
 	public void DrainFuel(float fuelUsed)
@@ -66,10 +72,10 @@ public class ShipStatus : MonoBehaviour
 		{
 			fuel = 0;
 			isEmpty = true;
-			PlayerOutOfFuel?.Invoke(isEmpty);
+			ShipOutOfFuel?.Invoke(isEmpty);
 		}
 
-		PlayerFuelUpdated?.Invoke(fuel);
+		ShipFuelUpdated?.Invoke(fuel);
 	}
 
 	// Repairs and Refuels the ship each call. Checks if both fuel and health are
@@ -78,12 +84,36 @@ public class ShipStatus : MonoBehaviour
 	{
 		health = Mathf.Clamp(health + repairPerTick, 0, maxHealth);
 		fuel = Mathf.Clamp(fuel + refuelPerTick, 0, maxFuel);
-		PlayerFuelUpdated?.Invoke(fuel);
-		PlayerHealthUpdated?.Invoke(health);
+		ShipFuelUpdated?.Invoke(fuel);
+		ShipHealthUpdated?.Invoke(health);
 
 		if (health == maxHealth && fuel == maxFuel)
 			return true;
 		else
 			return false;
+	}
+
+	public void SetShipSpawnPoint(Transform spawnpt) { respawnPoint = spawnpt; }
+
+	private IEnumerator HandleRespawn(float timer)
+	{
+		yield return new WaitForSeconds(timer);
+		health = maxHealth;
+		fuel = maxFuel;
+		transform.parent.position = respawnPoint.position;
+		transform.parent.rotation = respawnPoint.rotation;
+		isDead = false;
+
+		ShipHealthUpdated?.Invoke(health);
+		ShipFuelUpdated?.Invoke(fuel);
+		ShipHasRespawned?.Invoke();
+	}
+
+	public void OnShipReset(InputAction.CallbackContext context)
+	{
+		if (isDead) return;
+		isDead = true;
+		ShipHasDied?.Invoke(isDead);
+		StartCoroutine(HandleRespawn(0.5f));
 	}
 }

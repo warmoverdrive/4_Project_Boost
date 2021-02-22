@@ -10,12 +10,12 @@ public class FuelSliderDisplay : MonoBehaviour
 	{
 		StartCoroutine(InitializeSlider());
 
-		ShipStatus.PlayerFuelUpdated += OnFuelUpdated;
+		ShipStatus.ShipFuelUpdated += OnFuelUpdated;
 	}
 
 	private void OnDestroy()
 	{
-		ShipStatus.PlayerFuelUpdated -= OnFuelUpdated;
+		ShipStatus.ShipFuelUpdated -= OnFuelUpdated;
 	}
 
 	// This is called to stop the race condition of trying to pull data that hasnt

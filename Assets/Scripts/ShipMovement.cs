@@ -18,16 +18,18 @@ public class ShipMovement : MonoBehaviour
 
 	private void Start()
 	{
-		ShipStatus.PlayerHasDied += OnPlayerHasDied;
-		ShipStatus.PlayerOutOfFuel += OnPlayerEmpty;
+		ShipStatus.ShipHasDied += OnPlayerHasDied;
+		ShipStatus.ShipOutOfFuel += OnPlayerEmpty;
+		ShipStatus.ShipHasRespawned += OnRespawned;
 
 		fuelDrainPerSecond = shipStatusController.GetFuelDrainPerSecond();
 	}
 
 	private void OnDestroy()
 	{
-		ShipStatus.PlayerHasDied -= OnPlayerHasDied;
-		ShipStatus.PlayerOutOfFuel -= OnPlayerEmpty;
+		ShipStatus.ShipHasDied -= OnPlayerHasDied;
+		ShipStatus.ShipOutOfFuel -= OnPlayerEmpty;
+		ShipStatus.ShipHasRespawned -= OnRespawned;
 	}
 
 	private bool DeathCheck()
@@ -54,7 +56,7 @@ public class ShipMovement : MonoBehaviour
 		if (context.canceled)
 			StopCoroutine(nameof(Thrust));
 	}
-
+	
 	public void OnPivot(InputAction.CallbackContext context)
 	{
 		if (DeathCheck()) return;
@@ -62,24 +64,23 @@ public class ShipMovement : MonoBehaviour
 		if (context.started)
 		{
 			if (pivotAction == null)
-				pivotAction = StartCoroutine(Pivot(context.action.ReadValue<float>()));
-			else
-			{
-				StopCoroutine(pivotAction);
-				pivotAction = StartCoroutine(Pivot(context.action.ReadValue<float>()));
-			}
+				pivotAction = StartCoroutine(Pivot(context.action));
 		}
 			
 		if (context.canceled)
+		{
 			StopCoroutine(pivotAction);
+			pivotAction = null;
+		}
 	}
 
-	private IEnumerator Pivot(float direction)
+	private IEnumerator Pivot(InputAction pivotAction)
 	{
+		
 		while (true && !isDead)
 		{
 			DeathCheck();
-			rigidBody.AddTorque(-transform.forward * direction * pivotForce, ForceMode.Force);
+			rigidBody.AddTorque(-transform.forward * pivotAction.ReadValue<float>() * pivotForce, ForceMode.Force);
 			yield return new WaitForFixedUpdate();
 		}
 	}
@@ -94,6 +95,14 @@ public class ShipMovement : MonoBehaviour
 		}
 	}
 
-	private void OnPlayerHasDied(bool hasDied) { isDead = hasDied; }
-	private void OnPlayerEmpty(bool hasEmptied) { isEmpty = hasEmptied; }
+	private void OnPlayerHasDied(bool hasDied) => isDead = hasDied;
+	private void OnPlayerEmpty(bool hasEmptied) => isEmpty = hasEmptied;
+
+	private void OnRespawned()
+	{
+		isDead = false;
+		isEmpty = false;
+		rigidBody.velocity = Vector3.zero;
+		rigidBody.angularVelocity = Vector3.zero;
+	}
 }

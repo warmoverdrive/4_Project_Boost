@@ -14,14 +14,16 @@ public class ShipCollisionParser : MonoBehaviour
 
 	private void Start()
 	{
-		ShipStatus.PlayerHasDied += OnUpdateHasDied;
+		ShipStatus.ShipHasDied += OnUpdateHasDied;
+		ShipStatus.ShipHasRespawned += OnRespawned;
 
 		damageCooldown = shipStatusController.GetDamageCooldown();
 	}
 
 	private void OnDestroy()
 	{
-		ShipStatus.PlayerHasDied -= OnUpdateHasDied;
+		ShipStatus.ShipHasDied -= OnUpdateHasDied;
+		ShipStatus.ShipHasRespawned -= OnRespawned;
 	}
 
 	private void OnCollisionEnter(Collision collision)
@@ -53,4 +55,5 @@ public class ShipCollisionParser : MonoBehaviour
 	}
 
 	private void OnUpdateHasDied(bool hasDied) => isDead = hasDied;
+	private void OnRespawned() => isDead = false;
 }

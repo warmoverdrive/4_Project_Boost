@@ -8,14 +8,14 @@ public class HealthDisplay : MonoBehaviour
 
 	void Start()
 	{
-		ShipStatus.PlayerHealthUpdated += OnPlayerHealthUpdated;
+		ShipStatus.ShipHealthUpdated += OnPlayerHealthUpdated;
 
 		StartCoroutine(InitializeDisplay());
 	}
 
 	private void OnDestroy()
 	{
-		ShipStatus.PlayerHealthUpdated -= OnPlayerHealthUpdated;
+		ShipStatus.ShipHealthUpdated -= OnPlayerHealthUpdated;
 	}
 
 	// This is called to stop the race condition of trying to pull data that hasnt

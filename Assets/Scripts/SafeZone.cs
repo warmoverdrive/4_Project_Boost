@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class SafeZone : MonoBehaviour
 {
+	[SerializeField] Transform spawnPoint;
 	bool isDead = false;
 	Coroutine RandR;
 
 	private void Start()
 	{
-		ShipStatus.PlayerHasDied += OnPlayerDiedUpdated;
+		ShipStatus.ShipHasDied += OnPlayerDiedUpdated;
+		ShipStatus.ShipHasRespawned += OnRespawned;
 	}
 
 	private void OnDestroy()
 	{
-		ShipStatus.PlayerHasDied -= OnPlayerDiedUpdated;
+		ShipStatus.ShipHasDied -= OnPlayerDiedUpdated;
+		ShipStatus.ShipHasRespawned -= OnRespawned;
 	}
 
 	private void OnCollisionEnter(Collision collision)
@@ -27,6 +30,7 @@ public class SafeZone : MonoBehaviour
 			var status = collision.gameObject.GetComponentInChildren<ShipStatus>();
 			if (status == null)
 				return;
+			
 			RandR = StartCoroutine(RepairAndRefuel(status));
 		}
 	}
@@ -57,10 +61,14 @@ public class SafeZone : MonoBehaviour
 			// ensure the ship is relatively level
 			if (parentTransform.rotation.eulerAngles.z > 5 || parentTransform.rotation.eulerAngles.z < -5)
 				continue;
+
+			status.SetShipSpawnPoint(spawnPoint);
+
 			if (status.RepairAndRefuel() == true)
 				break;
 		}
 	}
 
-	private void OnPlayerDiedUpdated(bool hasDied) { isDead = hasDied; }
+	private void OnPlayerDiedUpdated(bool hasDied) => isDead = hasDied;
+	private void OnRespawned() => isDead = false;
 }
