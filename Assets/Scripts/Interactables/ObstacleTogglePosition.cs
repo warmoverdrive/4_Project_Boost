@@ -6,7 +6,7 @@ using TMPro;
 public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 {
 	[SerializeField] AccessCodeManager.AccessCodes accessCode = AccessCodeManager.AccessCodes.None;
-	[SerializeField] Transform elevatorPlatform;
+	[SerializeField] Transform obstacleObject;
     [SerializeField] Transform position1;
     [SerializeField] Transform position2;
 	[SerializeField] float transitionTime;
@@ -28,8 +28,11 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 	{
 		interactUI = GetComponentInChildren<Canvas>();
 		textbox = interactUI.GetComponentInChildren<TMP_Text>();
-		interactUI.gameObject.SetActive(false);
+		Initialize();
+	}
 
+	private void Initialize()
+	{
 		if (accessCode == AccessCodeManager.AccessCodes.None)
 			indicatorLight.color = waitingColor;
 		else
@@ -38,7 +41,11 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 			indicatorLight.color = code.Color;
 			isLocked = true;
 		}
+		obstacleObject.position = position1.position;
+		isPosition1 = true;
+		interactUI.gameObject.SetActive(false);
 	}
+
 	public void EnableInteractableUI()
 	{
 		if (isBusy) return;
@@ -53,14 +60,14 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 	}
 
 
-	public void Interact(GameObject player)
+	public bool Interact(GameObject player)
 	{
 		if (isBusy)
-			return;
+			return false;
 
 		if (isLocked)
 			if (ChallengeAccess() == false)
-				return;
+				return false;
 
 		if (isPosition1)
 			target = position2;
@@ -68,6 +75,7 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 			target = position1;
 
 		StartCoroutine(ElevatorMove(player));
+		return true;
 	}
 
 	private bool ChallengeAccess()
@@ -97,7 +105,7 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 
 		while (currentTime < transitionTime)
 		{
-			elevatorPlatform.position = Vector3.Lerp(startPos, target.position, currentTime / transitionTime);
+			obstacleObject.position = Vector3.Lerp(startPos, target.position, currentTime / transitionTime);
 			currentTime += Time.deltaTime;
 			currentTime = Mathf.Clamp(currentTime, 0, transitionTime);
 			yield return new WaitForEndOfFrame();
@@ -114,4 +122,8 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 			EnableInteractableUI();
 	}
 
+	public void ResetInteractable()
+	{
+		Initialize();
+	}
 }

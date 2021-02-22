@@ -46,6 +46,17 @@ public class ShipStatus : MonoBehaviour
 
 		ShipHealthUpdated?.Invoke(health);
 		ShipFuelUpdated?.Invoke(fuel);
+
+		ShipUpgradeManager.FuelCapUpgraded += OnUpgradeFuelCap;
+		ShipUpgradeManager.FuelDrainUpgraded += OnFuelDrainUpgraded;
+		ShipUpgradeManager.DamageMultiplierUpgraded += OnDamageMultiplierUpgraded;
+	}
+
+	private void OnDestroy()
+	{
+		ShipUpgradeManager.FuelCapUpgraded -= OnUpgradeFuelCap;
+		ShipUpgradeManager.FuelDrainUpgraded -= OnFuelDrainUpgraded;
+		ShipUpgradeManager.DamageMultiplierUpgraded -= OnDamageMultiplierUpgraded;
 	}
 
 	public void TakeDamage(float rawDamage)
@@ -115,4 +126,8 @@ public class ShipStatus : MonoBehaviour
 		ShipHasDied?.Invoke(isDead);
 		StartCoroutine(HandleRespawn(0.5f));
 	}
+
+	private void OnUpgradeFuelCap(int capIncrease) => maxFuel += capIncrease;
+	private void OnFuelDrainUpgraded(float drainDecrease) => fuelDrainPerSecond -= drainDecrease;
+	private void OnDamageMultiplierUpgraded(float damMultDecrease) => damageMultiplier -= damMultDecrease;
 }

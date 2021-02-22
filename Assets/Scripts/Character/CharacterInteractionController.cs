@@ -8,7 +8,14 @@ public class CharacterInteractionController : MonoBehaviour
 	[SerializeField] float enabledInteractionCooldown = 3f;
     [SerializeField] List<IInteractable> interactableObjects = new List<IInteractable>();
 
+	CharacterInteractionsTracker tracker;
+
 	bool interactionEnabled = false;
+
+	private void Start()
+	{
+		tracker = GetComponent<CharacterInteractionsTracker>();
+	}
 
 	private void OnEnable()
 	{
@@ -49,7 +56,9 @@ public class CharacterInteractionController : MonoBehaviour
 		if (!context.started)
 			return;
 		foreach (var interactable in interactableObjects)
-			interactable.Interact(transform.parent.gameObject);
+			if (interactable.Interact(transform.parent.gameObject))
+				tracker.TrackInteractable(interactable);
+
 	}
 
 	private IEnumerator EnabledInteractionCooldown()

@@ -7,8 +7,8 @@ public class ShipMovement : MonoBehaviour
 {
 	[SerializeField] ShipStatus shipStatusController;
 	[SerializeField] Rigidbody rigidBody;
-	[SerializeField] float mainThrustForce = 15f;
-	[SerializeField] float pivotForce = 10f;
+	[SerializeField] float mainThrustForce;
+	[SerializeField] float pivotForce;
 	[SerializeField] Transform mainThrustTransform;
 
 	float fuelDrainPerSecond;
@@ -21,6 +21,8 @@ public class ShipMovement : MonoBehaviour
 		ShipStatus.ShipHasDied += OnPlayerHasDied;
 		ShipStatus.ShipOutOfFuel += OnPlayerEmpty;
 		ShipStatus.ShipHasRespawned += OnRespawned;
+		ShipUpgradeManager.FuelDrainUpgraded += OnFuelDrainUpgraded;
+		ShipUpgradeManager.ThrustPowerUpgraded += OnThrustUpgraded;
 
 		fuelDrainPerSecond = shipStatusController.GetFuelDrainPerSecond();
 	}
@@ -30,6 +32,8 @@ public class ShipMovement : MonoBehaviour
 		ShipStatus.ShipHasDied -= OnPlayerHasDied;
 		ShipStatus.ShipOutOfFuel -= OnPlayerEmpty;
 		ShipStatus.ShipHasRespawned -= OnRespawned;
+		ShipUpgradeManager.FuelDrainUpgraded -= OnFuelDrainUpgraded;
+		ShipUpgradeManager.ThrustPowerUpgraded -= OnThrustUpgraded;
 	}
 
 	private bool DeathCheck()
@@ -97,6 +101,12 @@ public class ShipMovement : MonoBehaviour
 
 	private void OnPlayerHasDied(bool hasDied) => isDead = hasDied;
 	private void OnPlayerEmpty(bool hasEmptied) => isEmpty = hasEmptied;
+	private void OnFuelDrainUpgraded(float fuelDrainDecrease) => fuelDrainPerSecond -= fuelDrainDecrease;
+	private void OnThrustUpgraded(int thrustIncrease)
+	{
+		mainThrustForce += thrustIncrease;
+		pivotForce += thrustIncrease;
+	}
 
 	private void OnRespawned()
 	{

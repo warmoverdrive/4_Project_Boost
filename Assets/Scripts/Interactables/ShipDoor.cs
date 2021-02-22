@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShipDoor : MonoBehaviour, IInteractable
 {
 	[SerializeField] PlayerControlStateManager controlStateManager;
+	[SerializeField] ShipUpgradeManager upgradeManager;
 
 	Canvas interactableUI;
 
@@ -14,10 +15,12 @@ public class ShipDoor : MonoBehaviour, IInteractable
 		interactableUI.gameObject.SetActive(false);
 	}
 
-	public void Interact(GameObject player)
+	public bool Interact(GameObject player)
 	{
 		controlStateManager.OnEmbark();
+		player.GetComponentInChildren<CharacterInteractionsTracker>().ProcessEmbark(upgradeManager);
 		DisableInteractableUI();
+		return true;
 	}
 
 	public void EnableInteractableUI()
@@ -29,4 +32,6 @@ public class ShipDoor : MonoBehaviour, IInteractable
 	{
 		interactableUI.gameObject.SetActive(false);
 	}
+
+	public void ResetInteractable() { return; }
 }

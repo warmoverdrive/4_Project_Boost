@@ -71,6 +71,9 @@
     <Compile Include="Assets\Scripts\Ship\ShipCollisionParser.cs" />
     <Compile Include="Assets\Scripts\Interactables\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Interactables\ShipDoor.cs" />
+    <Compile Include="Assets\Scripts\Ship\ShipUpgradeManager.cs" />
+    <Compile Include="Assets\Scripts\Interactables\Upgrade.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterInteractionsTracker.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

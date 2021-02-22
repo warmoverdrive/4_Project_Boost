@@ -20,7 +20,11 @@ public class AccessComputer : MonoBehaviour, IInteractable
 		UIcanvas = GetComponentInChildren<Canvas>();
 		textbox = GetComponentInChildren<TMP_Text>();
 		AccessCodeManager.accessCodes.TryGetValue(accessLevel, out code);
+		Initialize();
+	}
 
+	private void Initialize()
+	{
 		indicatorLight.color = code.Color;
 		textbox.text = $"DOWNLOAD\n{code.Name} ACCESS CODE";
 		DisableInteractableUI();
@@ -28,23 +32,30 @@ public class AccessComputer : MonoBehaviour, IInteractable
 
 	public void EnableInteractableUI()
 	{
+		if (accessGranted)
+			return;
 		UIcanvas.gameObject.SetActive(true);
 	}
 
 	public void DisableInteractableUI()
 	{
-		if (accessGranted)
-			Destroy(gameObject);
-
 		UIcanvas.gameObject.SetActive(false);
 	}
 
 
-	public void Interact(GameObject player)
+	public bool Interact(GameObject player)
 	{
 		FindObjectOfType<AccessCodeManager>().ModifyAccess(accessLevel, true);
+		player.GetComponentInChildren<CharacterInteractionsTracker>().TrackAccessCode(accessLevel);
 		textbox.text = $"{code.Name} LEVEL ACCESS GRANTED";
 		indicatorLight.color = accessedColor;
 		accessGranted = true;
+		return true;
+	}
+
+	public void ResetInteractable()
+	{
+		accessGranted = false;
+		Initialize();
 	}
 }
