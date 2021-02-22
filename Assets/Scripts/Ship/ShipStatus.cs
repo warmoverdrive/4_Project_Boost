@@ -55,7 +55,6 @@ public class ShipStatus : MonoBehaviour
 		if (health <= 0)
 		{
 			health = 0;
-			Debug.LogError("Dead");
 			isDead = true;
 			ShipHasDied?.Invoke(isDead);
 			StartCoroutine(HandleRespawn(respawnTime));

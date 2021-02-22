@@ -22,7 +22,6 @@ public class CharacterInteractionController : MonoBehaviour
 		if (interactionEnabled == false)
 			return;
 
-		Debug.Log(other);
 		var interactable = other.GetComponent<IInteractable>();
 		if (interactable == null) 
 			return;

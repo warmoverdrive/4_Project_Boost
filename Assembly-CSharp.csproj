@@ -56,21 +56,21 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CharacterInteractionController.cs" />
-    <Compile Include="Assets\Scripts\HealthDisplay.cs" />
-    <Compile Include="Assets\Scripts\SafeZone.cs" />
-    <Compile Include="Assets\Scripts\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterInteractionController.cs" />
+    <Compile Include="Assets\Scripts\UI\HealthDisplay.cs" />
+    <Compile Include="Assets\Scripts\Interactables\SafeZone.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\Interactables\ObstacleTogglePosition.cs" />
+    <Compile Include="Assets\Scripts\Interactables\AccessComputer.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
-    <Compile Include="Assets\Scripts\ShipStatus.cs" />
-    <Compile Include="Assets\Scripts\FuelSliderDisplay.cs" />
-    <Compile Include="Assets\Scripts\PlayerControlStateManager.cs" />
-    <Compile Include="Assets\Scripts\ShipMovement.cs" />
-    <Compile Include="Assets\Scripts\ShipCollisionParser.cs" />
-    <Compile Include="Assets\Scripts\IInteractable.cs" />
-    <Compile Include="Assets\Scripts\ShipDoor.cs" />
-    <Compile Include="Assets\Scripts\ObstacleTogglePosition.cs" />
     <Compile Include="Assets\Scripts\AccessCodeManager.cs" />
-    <Compile Include="Assets\Scripts\AccessComputer.cs" />
+    <Compile Include="Assets\Scripts\Ship\ShipStatus.cs" />
+    <Compile Include="Assets\Scripts\UI\FuelSliderDisplay.cs" />
+    <Compile Include="Assets\Scripts\PlayerControlStateManager.cs" />
+    <Compile Include="Assets\Scripts\Ship\ShipMovement.cs" />
+    <Compile Include="Assets\Scripts\Ship\ShipCollisionParser.cs" />
+    <Compile Include="Assets\Scripts\Interactables\IInteractable.cs" />
+    <Compile Include="Assets\Scripts\Interactables\ShipDoor.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
