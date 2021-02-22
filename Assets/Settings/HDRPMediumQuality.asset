@@ -198,7 +198,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderPipelineSettings:
     supportShadowMask: 0
-    supportSSR: 0
+    supportSSR: 1
     supportSSRTransparent: 0
     supportSSAO: 1
     supportSSGI: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
       AOBilateralUpsample: 000001
       AODirectionCount: 010000000200000002000000
       ContactShadowSampleCount: 04000000080000000c000000
-      SSRMaxRaySteps: 0c0000001800000030000000
+      SSRMaxRaySteps: 080000001800000030000000
       RTAORayLength:
       - 0.5
       - 3

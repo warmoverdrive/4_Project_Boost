@@ -22,6 +22,7 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 	bool isBusy = false;
 	bool isPosition1 = true;
 	bool isLocked = false;
+	bool playerHasLeft = false;
 
 	private void Start()
 	{
@@ -47,7 +48,7 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 
 	public void DisableInteractableUI()
 	{
-		if (isBusy) return;
+		if (isBusy) playerHasLeft = true;
 		interactUI.gameObject.SetActive(false);
 	}
 
@@ -106,7 +107,11 @@ public class ObstacleTogglePosition : MonoBehaviour, IInteractable
 		isPosition1 = !isPosition1;
 		isBusy = false;
 		indicatorLight.color = waitingColor;
-		EnableInteractableUI();
+		// check if the player has left the interactable UI area
+		if (playerHasLeft)
+			playerHasLeft = false;
+		else
+			EnableInteractableUI();
 	}
 
 }

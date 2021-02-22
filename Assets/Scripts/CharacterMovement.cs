@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour
 	[SerializeField] float moveSpeed = 5f;
 	[SerializeField] float acceleration = 25f;
 	[SerializeField] float jumpForce = 5f;
+	[SerializeField] float fallForce = 2f;
 
 	Coroutine movementRoutine;
 
@@ -22,6 +23,8 @@ public class CharacterMovement : MonoBehaviour
 	{
 		if (context.started)
 			rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
+		if (context.canceled)
+			rb.AddForce(new Vector3(0, -fallForce, 0), ForceMode.VelocityChange);
 	}
 
 	private IEnumerator HandleMovement(InputAction action)

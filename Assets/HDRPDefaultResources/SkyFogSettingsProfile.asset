@@ -95,13 +95,13 @@ MonoBehaviour:
     m_Value: 55261.973
     min: 0
   aerosolDensity:
-    m_OverrideState: 0
-    m_Value: 0.161
+    m_OverrideState: 1
+    m_Value: 0.07
     min: 0
     max: 1
   aerosolTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0.17926908, b: 1, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
     max: 10
   groundTint:
     m_OverrideState: 1
-    m_Value: {r: 0.7714489, g: 0.79630035, b: 0.8301887, a: 1}
+    m_Value: {r: 0.5, g: 0.4226878, b: 0.38915095, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 0
@@ -133,51 +133,51 @@ MonoBehaviour:
     m_Value: {fileID: 0}
   groundEmissionMultiplier:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0
     min: 0
   planetRotation:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0, z: 0}
   spaceEmissionTexture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
+    m_OverrideState: 1
+    m_Value: {fileID: 8900000, guid: 54a3a0570aebe8949bec4966f1376581, type: 3}
   spaceEmissionMultiplier:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0
     min: 0
   spaceRotation:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0, z: 0}
   colorSaturation:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0.242
     min: 0
     max: 1
   alphaSaturation:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
     min: 0
     max: 1
   alphaMultiplier:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
     min: 0
     max: 1
   horizonTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0.75, b: 0.96470594, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 0
   zenithTint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.9009434, g: 0.9200322, b: 1, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 0
   horizonZenithShift:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -0.56
     min: -1
     max: 1
 --- !u!114 &-3305224281371206947
@@ -335,9 +335,9 @@ MonoBehaviour:
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 4
   meteringMode:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 2
   luminanceSource:
     m_OverrideState: 0
@@ -346,13 +346,13 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1.5
   compensation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   limitMin:
-    m_OverrideState: 0
-    m_Value: -10
+    m_OverrideState: 1
+    m_Value: -20
   limitMax:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 20
   curveMap:
     m_OverrideState: 0
@@ -447,8 +447,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {fileID: 0}
   histogramPercentages:
-    m_OverrideState: 0
-    m_Value: {x: 40, y: 90}
+    m_OverrideState: 1
+    m_Value: {x: 50.699577, y: 88.80728}
     min: 0
     max: 100
   histogramUseCurveRemapping:

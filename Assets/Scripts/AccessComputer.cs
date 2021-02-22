@@ -23,19 +23,7 @@ public class AccessComputer : MonoBehaviour, IInteractable
 
 		indicatorLight.color = code.Color;
 		textbox.text = $"DOWNLOAD\n{code.Name} ACCESS CODE";
-		//StartCoroutine(Initialize());
-	}
-
-	private IEnumerator Initialize()
-	{
-		yield return new WaitForSeconds(1f);
-
-		UIcanvas = GetComponentInChildren<Canvas>();
-		textbox = GetComponentInChildren<TMP_Text>();
-		AccessCodeManager.accessCodes.TryGetValue(accessLevel, out code);
-
-		indicatorLight.color = code.Color;
-		textbox.text = $"DOWNLOAD\n{code.Name} ACCESS CODE";
+		DisableInteractableUI();
 	}
 
 	public void EnableInteractableUI()
