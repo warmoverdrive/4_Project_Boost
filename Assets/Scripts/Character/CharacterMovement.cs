@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour
 	[SerializeField] float acceleration = 25f;
 	[SerializeField] float jumpForce = 5f;
 	[SerializeField] float fallForce = 2f;
+	[SerializeField] LayerMask groundCheckMask;
+	[SerializeField] float groundCheckDist = 1f;
 
 	Coroutine movementRoutine;
 
@@ -22,7 +24,10 @@ public class CharacterMovement : MonoBehaviour
 	public void OnJump(InputAction.CallbackContext context)
 	{
 		if (context.started)
-			rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
+		{
+			if (GroundCheck())
+				rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
+		}
 		if (context.canceled)
 			rb.AddForce(new Vector3(0, -fallForce, 0), ForceMode.VelocityChange);
 	}
@@ -42,5 +47,10 @@ public class CharacterMovement : MonoBehaviour
 		}
 		// clear self-reference before exiting method
 		movementRoutine = null;
+	}
+
+	private bool GroundCheck()
+	{
+		return Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDist, groundCheckMask);
 	}
 }

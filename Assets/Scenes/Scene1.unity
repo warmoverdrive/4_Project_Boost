@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03610304, g: 0.017881483, b: 0.01189705, a: 1}
+  m_IndirectSpecularColor: {r: 0.051985383, g: 0.016688555, b: 0.0072127464, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2910,8 +2910,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 71.140526
+  m_Color: {r: 0.76470596, g: 0.7686275, b: 0.76470596, a: 1}
+  m_Intensity: 7.9577475
   m_Range: 16
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2981,14 +2981,14 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 893.9782
+  m_Intensity: 5.99236
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 5.72
-  m_LightUnit: 0
+  m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 250
   m_AffectDiffuse: 1
@@ -3229,7 +3229,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23322
+  m_Name: pb_Mesh23358
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3439,13 +3439,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 1
-  m_Intensity: 11.63
+  m_Intensity: 9.314288
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 3.62
+  m_VolumetricDimmer: 2.67
   m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 150
@@ -3553,7 +3553,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.9150025, b: 1, a: 1}
-  m_Intensity: 396.17667
+  m_Intensity: 79.57747
   m_Range: 785.6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4071,7 +4071,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.9528302, b: 0.11272614, a: 1}
-  m_Intensity: 149.46968
+  m_Intensity: 7.9577475
   m_Range: 1.29
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4141,7 +4141,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 10.223709
+  m_Intensity: 5.99236
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -4404,13 +4404,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 1
-  m_Intensity: 11.63
+  m_Intensity: 9.314288
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 3.62
+  m_VolumetricDimmer: 2.67
   m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 150
@@ -4518,7 +4518,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.9150025, b: 1, a: 1}
-  m_Intensity: 396.17667
+  m_Intensity: 79.57747
   m_Range: 785.6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4708,7 +4708,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22782
+  m_Name: pb_Mesh22754
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5243,13 +5243,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 1
-  m_Intensity: 11.63
+  m_Intensity: 9.314288
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 3.62
+  m_VolumetricDimmer: 2.67
   m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 150
@@ -5357,7 +5357,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.9150025, b: 1, a: 1}
-  m_Intensity: 396.17667
+  m_Intensity: 79.57747
   m_Range: 785.6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5459,13 +5459,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 1
-  m_Intensity: 11.63
+  m_Intensity: 9.314288
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 3.62
+  m_VolumetricDimmer: 2.67
   m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 150
@@ -5573,7 +5573,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.9150025, b: 1, a: 1}
-  m_Intensity: 396.17667
+  m_Intensity: 79.57747
   m_Range: 785.6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6502,13 +6502,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 1
-  m_Intensity: 11.63
+  m_Intensity: 9.314288
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 3.62
+  m_VolumetricDimmer: 2.67
   m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 150
@@ -6616,7 +6616,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.9150025, b: 1, a: 1}
-  m_Intensity: 396.17667
+  m_Intensity: 79.57747
   m_Range: 785.6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6754,13 +6754,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 1
-  m_Intensity: 13.3
+  m_Intensity: 9.314288
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 3.62
+  m_VolumetricDimmer: 2.67
   m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 150
@@ -6868,7 +6868,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.9150025, b: 1, a: 1}
-  m_Intensity: 1260.692
+  m_Intensity: 79.57747
   m_Range: 27.8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7482,13 +7482,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 1
-  m_Intensity: 9.67
+  m_Intensity: 9.314288
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 3.62
+  m_VolumetricDimmer: 2.67
   m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 150
@@ -7596,7 +7596,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.9150025, b: 1, a: 1}
-  m_Intensity: 101.828674
+  m_Intensity: 79.57747
   m_Range: 785.6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7999,14 +7999,14 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 600
+  m_Intensity: 5.99236
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_LightUnit: 0
+  m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 10000
   m_AffectDiffuse: 1
@@ -8113,7 +8113,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 47.746483
+  m_Intensity: 7.9577475
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8169,7 +8169,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23370
+  m_Name: pb_Mesh23406
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8764,7 +8764,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 15.22
+  m_Intensity: 12.636216
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 45.8
   m_InnerSpotPercent: 5.7
@@ -8878,7 +8878,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 1, b: 0.9193516, a: 1}
-  m_Intensity: 4770.7495
+  m_Intensity: 795.77466
   m_Range: 28.5
   m_SpotAngle: 52
   m_InnerSpotAngle: 21.80208
@@ -9910,7 +9910,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028152448}
-  m_LocalRotation: {x: -3e-45, y: -1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: 1e-45, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 6e-45, y: 2.5, z: -17.777779}
   m_LocalScale: {x: 0.2, y: 0.20000002, z: 0.20000002}
   m_Children:
@@ -10528,27 +10528,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 604574683031968705, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.031266503
+      value: -0.022413714
       objectReference: {fileID: 0}
     - target: {fileID: 604574683031968705, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.9830098
+      value: -0.97823286
       objectReference: {fileID: 0}
     - target: {fileID: 604574683031968705, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.018184226
+      value: 0.017244266
       objectReference: {fileID: 0}
     - target: {fileID: 604574683031968705, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.17995414
+      value: -0.20557423
       objectReference: {fileID: 0}
     - target: {fileID: 604574683031968705, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 176.1
+      value: 177.08
       objectReference: {fileID: 0}
     - target: {fileID: 604574683031968705, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -380.7
+      value: -383.7
       objectReference: {fileID: 0}
     - target: {fileID: 604574683031968705, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -10777,6 +10777,10 @@ PrefabInstance:
     - target: {fileID: 6036082589011171296, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 3.127
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240076251166687866, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
+      propertyPath: weight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7240076251166687866, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: sharedProfile
