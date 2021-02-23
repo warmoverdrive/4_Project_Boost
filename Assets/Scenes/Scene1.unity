@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04523921, g: 0.015693478, b: 0.010282662, a: 1}
+  m_IndirectSpecularColor: {r: 0.060625196, g: 0.02136463, b: 0.011778045, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2475,6 +2475,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7e34fd27-71bf-4529-b34d-bf14605277d1
     m_ActionName: Ship/Reset[/Keyboard/r,/Keyboard/pageDown,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1566902421}
+        m_TargetAssemblyTypeName: CharacterStatus, Assembly-CSharp
+        m_MethodName: OnReset
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b77a1c91-02db-4a59-81d0-3ee5a7527dbe
+    m_ActionName: Character/Reset[/Keyboard/r,/Keyboard/pageDown,/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ship
@@ -2624,6 +2640,7 @@ GameObject:
   - component: {fileID: 511242124}
   - component: {fileID: 511242123}
   - component: {fileID: 511242127}
+  - component: {fileID: 511242128}
   m_Layer: 10
   m_Name: Character
   m_TagString: Untagged
@@ -2727,6 +2744,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &511242128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511242122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7203cbe16e598c54091b2e261910335a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStatus: {fileID: 1566902421}
 --- !u!1 &519805932
 GameObject:
   m_ObjectHideFlags: 0
@@ -8083,6 +8113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1566902420}
   - component: {fileID: 1566902422}
+  - component: {fileID: 1566902421}
   m_Layer: 10
   m_Name: CharacterSettings
   m_TagString: Untagged
@@ -8104,6 +8135,26 @@ Transform:
   m_Father: {fileID: 511242126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1566902421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566902419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abad5c70e28e0b846907df30179f9cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damageMultiplier: 5
+  magnatudeTolerance: 12
+  respawnTime: 2
+  ppVolume: {fileID: 1902850457}
+  tracker: {fileID: 1979665170}
+  spawnPos: {fileID: 582873616}
+  health: 0
 --- !u!114 &1566902422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9695,6 +9746,17 @@ MonoBehaviour:
   refuelPerTick: 10
   respawnPoint: {fileID: 0}
   respawnTime: 2
+--- !u!114 &1902850457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7240076251166687866, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
+  m_PrefabInstance: {fileID: 2070584655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1932693812
 GameObject:
   m_ObjectHideFlags: 1
@@ -10433,7 +10495,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028152448}
-  m_LocalRotation: {x: 1e-45, y: -1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -3e-45, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 6e-45, y: 2.5, z: -17.777779}
   m_LocalScale: {x: 0.2, y: 0.20000002, z: 0.20000002}
   m_Children:
@@ -11304,6 +11366,10 @@ PrefabInstance:
     - target: {fileID: 7240076251166687866, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: weight
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240076251166687866, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
+      propertyPath: priority
+      value: 8.78
       objectReference: {fileID: 0}
     - target: {fileID: 7240076251166687866, guid: 2bfa7b9d63fa79e4abdc033f54a868d2, type: 3}
       propertyPath: sharedProfile

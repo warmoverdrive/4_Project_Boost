@@ -14,14 +14,35 @@ public class CharacterMovement : MonoBehaviour
 
 	Coroutine movementRoutine;
 
+	bool isDead = false;
+
+	private void Start()
+	{
+		CharacterStatus.CharacterDied += OnCharacterDeath;
+		CharacterStatus.CharacterRespawned += OnCharacterRespawn;
+	}
+
+	private void OnDestroy()
+	{
+		CharacterStatus.CharacterDied -= OnCharacterDeath;
+		CharacterStatus.CharacterRespawned -= OnCharacterRespawn;
+	}
+
+	private void OnCharacterDeath() => isDead = true;
+	private void OnCharacterRespawn() => isDead = false;
+
 	public void OnMovement(InputAction.CallbackContext context)
 	{
+		if (isDead)
+			return;
 		if (context.started && movementRoutine == null)
 			movementRoutine = StartCoroutine(HandleMovement(context.action));
 	}
 
 	public void OnJump(InputAction.CallbackContext context)
 	{
+		if (isDead)
+			return;
 		if (context.started)
 		{
 			if (IsGrounded())
@@ -48,6 +69,6 @@ public class CharacterMovement : MonoBehaviour
 
 	private bool IsGrounded()
 	{
-		return Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDist, groundCheckMask);
+		return Physics.Raycast(transform.position, Vector3.down, groundCheckDist, groundCheckMask);
 	}
 }

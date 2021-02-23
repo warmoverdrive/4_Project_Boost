@@ -59,6 +59,7 @@ public class PlayerControlStateManager : MonoBehaviour
         inputManager.SwitchCurrentActionMap("Character");
         shipUI.enabled = false;
         character.transform.position = shipExit.position;
+        character.GetComponent<Rigidbody>().velocity = Vector3.zero;
         character.SetActive(true);
     }
 }

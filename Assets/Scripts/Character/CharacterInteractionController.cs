@@ -15,6 +15,15 @@ public class CharacterInteractionController : MonoBehaviour
 	private void Start()
 	{
 		tracker = GetComponent<CharacterInteractionsTracker>();
+
+		CharacterStatus.CharacterDied += OnCharacterDeath;
+		CharacterStatus.CharacterRespawned += OnCharacterRespawn;
+	}
+
+	private void OnDestroy()
+	{
+		CharacterStatus.CharacterDied -= OnCharacterDeath;
+		CharacterStatus.CharacterRespawned -= OnCharacterRespawn;
 	}
 
 	private void OnEnable()
@@ -23,6 +32,9 @@ public class CharacterInteractionController : MonoBehaviour
 		// basically just to stop UI elements from popping in immediately on disembark
 		StartCoroutine(EnabledInteractionCooldown());
 	}
+
+	private void OnCharacterDeath() => interactionEnabled = false;
+	private void OnCharacterRespawn() => StartCoroutine(EnabledInteractionCooldown());
 
 	private void OnTriggerEnter(Collider other)
 	{
