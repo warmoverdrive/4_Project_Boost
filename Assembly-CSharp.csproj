@@ -60,23 +60,24 @@
     <Compile Include="Assets\Scripts\UI\HealthDisplay.cs" />
     <Compile Include="Assets\Scripts\Interactables\SafeZone.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\Interactables\Upgrade.cs" />
     <Compile Include="Assets\Scripts\Interactables\ObstacleTogglePosition.cs" />
     <Compile Include="Assets\Scripts\Interactables\AccessComputer.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\AccessCodeManager.cs" />
     <Compile Include="Assets\Scripts\Ship\ShipStatus.cs" />
     <Compile Include="Assets\Scripts\UI\FuelSliderDisplay.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterStatus.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterCollisionParser.cs" />
+    <Compile Include="Assets\Scripts\Ship\ShipUpgradeManager.cs" />
     <Compile Include="Assets\Scripts\PlayerControlStateManager.cs" />
     <Compile Include="Assets\Scripts\Ship\ShipMovement.cs" />
     <Compile Include="Assets\Scripts\Ship\ShipCollisionParser.cs" />
+    <Compile Include="Assets\Scripts\Hazards\Laser.cs" />
     <Compile Include="Assets\Scripts\Interactables\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Interactables\ShipDoor.cs" />
-    <Compile Include="Assets\Scripts\Ship\ShipUpgradeManager.cs" />
-    <Compile Include="Assets\Scripts\Interactables\Upgrade.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterInteractionsTracker.cs" />
-    <Compile Include="Assets\Scripts\Character\CharacterStatus.cs" />
-    <Compile Include="Assets\Scripts\Character\CharacterCollisionParser.cs" />
-    <Compile Include="Assets\Scripts\Hazards\Laser.cs" />
+    <Compile Include="Assets\Scripts\IDamageable.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

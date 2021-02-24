@@ -73,6 +73,8 @@ public class ShipMovement : MonoBehaviour
 			
 		if (context.canceled)
 		{
+			if (pivotAction == null)
+				return;
 			StopCoroutine(pivotAction);
 			pivotAction = null;
 		}

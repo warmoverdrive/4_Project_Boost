@@ -31,6 +31,6 @@ public class CharacterCollisionParser : MonoBehaviour
 		if (rawMagnitude < characterStatus.GetMagnitudeTolerance())
 			return;
 		else
-			characterStatus.Damage(rawMagnitude);
+			characterStatus.TakeDamage(rawMagnitude);
 	}
 }

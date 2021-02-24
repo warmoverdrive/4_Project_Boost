@@ -8,8 +8,7 @@ public class Laser : MonoBehaviour
     [SerializeField] float startupTime = 0.5f;
     [SerializeField] float activeTime = 3f;
     [SerializeField] float inactiveTime = 3f;
-    [SerializeField] float laserRadius = 2.5f;
-    [SerializeField] float laserDamage = 5;
+    [SerializeField] float laserDamagePerSecond = 25;
     [Header("Component References")]
     [SerializeField] Transform targetPos;
     [SerializeField] LayerMask interactionLayers;
@@ -46,6 +45,18 @@ public class Laser : MonoBehaviour
         // Startup loop
         foreach (var particleSys in particleSystems)
             particleSys.Play();
+        GameObject impactParticles = Instantiate(
+            hitParticlesPrefab, transform.position, Quaternion.identity, transform);
+
+        // This confusing looking "line" determines if the targetPos is obstructed at all
+        // and resolves a collision by setting the starting target either to the collision point
+        // or the target point
+        Vector3 startingTarget = Physics.Raycast(
+            transform.position,
+            targetPos.localPosition.normalized,
+            out RaycastHit hit,
+            Vector3.Distance(transform.position, targetPos.position),
+            interactionLayers) ? transform.InverseTransformPoint(hit.point) : targetPos.position;
 
         float startupTimer = 0f;
         while (startupTimer < startupTime)
@@ -53,13 +64,10 @@ public class Laser : MonoBehaviour
             yield return new WaitForEndOfFrame();
             startupTimer = Mathf.Clamp(startupTimer + Time.deltaTime, 0, startupTime);
             beamRenderer.SetPosition(1, Vector3.Lerp(
-                Vector3.zero, targetPos.localPosition, startupTimer / startupTime));
+                Vector3.zero, startingTarget, startupTimer / startupTime));
 		}
 
         // Active Loop (collision checking)
-        GameObject impactParticles = Instantiate(
-            hitParticlesPrefab, targetPos.position, Quaternion.identity, transform);
-
         float activeTimer = 0f;
         while (activeTimer < activeTime)
 		{
@@ -72,12 +80,16 @@ public class Laser : MonoBehaviour
         impactParticles.GetComponent<ParticleSystem>().Stop(true);
         Destroy(impactParticles, 1f);
 
+        // Get the current position of the beam as the starting position for the
+        // deactivation
+        Vector3 endingTarget = beamRenderer.GetPosition(1);
+
         while (startupTimer > 0)
         {
             yield return new WaitForEndOfFrame();
             startupTimer = Mathf.Clamp(startupTimer - Time.deltaTime, 0, startupTime);
             beamRenderer.SetPosition(1, Vector3.Lerp(
-                Vector3.zero, targetPos.localPosition, startupTimer / startupTime));
+                Vector3.zero, endingTarget, startupTimer / startupTime));
         }
 
         foreach (var particleSys in particleSystems)
@@ -86,9 +98,8 @@ public class Laser : MonoBehaviour
 
     private void CheckCollisions(GameObject impactParticles)
 	{
-        if (Physics.SphereCast(
-            transform.position, 
-            laserRadius,
+        if (Physics.Raycast(
+            transform.position,
             targetPos.localPosition.normalized, 
             out RaycastHit hit,
             Vector3.Distance(transform.position, targetPos.position),
@@ -100,14 +111,11 @@ public class Laser : MonoBehaviour
             // check for damagables
             if (hit.rigidbody)
 			{
-                if (hit.rigidbody.GetComponentInChildren<ShipStatus>())
+                var damageable = hit.rigidbody.GetComponentInChildren<IDamageable>();
+                if (damageable != null)
 			    {
-                    hit.rigidbody.GetComponentInChildren<ShipStatus>().TakeDamage(laserDamage);
+                    damageable.TakeDamage(laserDamagePerSecond * Time.deltaTime);
 			    }
-                else if (hit.rigidbody.GetComponentInChildren<CharacterStatus>())
-                {
-                    hit.rigidbody.GetComponentInChildren<CharacterStatus>().Damage(laserDamage);
-                }
 			}
         }
 		else

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 
-public class ShipStatus : MonoBehaviour
+public class ShipStatus : MonoBehaviour, IDamageable
 {
 	[Header("Health")]
     [SerializeField] int maxHealth = 100;

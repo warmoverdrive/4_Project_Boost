@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 
-public class CharacterStatus : MonoBehaviour
+public class CharacterStatus : MonoBehaviour, IDamageable
 {
     [SerializeField] int maxHealth = 100;
     [SerializeField] float damageMultiplier = 5f;
@@ -32,7 +32,7 @@ public class CharacterStatus : MonoBehaviour
         ppVolume.profile.TryGet(out vignette);
 	}
 
-    public void Damage(float magnitude)
+    public void TakeDamage(float magnitude)
 	{
         health -= Mathf.RoundToInt(magnitude * damageMultiplier);
         health = Mathf.Clamp(health, 0, maxHealth);

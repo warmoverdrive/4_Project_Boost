@@ -29,7 +29,11 @@ public class CharacterMovement : MonoBehaviour
 	}
 
 	private void OnCharacterDeath() => isDead = true;
-	private void OnCharacterRespawn() => isDead = false;
+	private void OnCharacterRespawn()
+	{
+		isDead = false;
+		rb.velocity = Vector3.zero;
+	}
 
 	public void OnMovement(InputAction.CallbackContext context)
 	{
