@@ -56,28 +56,31 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Character\CharacterInteractionController.cs" />
+    <Compile Include="Assets\Scripts\Player\Character\CharacterInteractionController.cs" />
     <Compile Include="Assets\Scripts\UI\HealthDisplay.cs" />
     <Compile Include="Assets\Scripts\Interactables\SafeZone.cs" />
-    <Compile Include="Assets\Scripts\Character\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\Character\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\Interactables\Upgrade.cs" />
     <Compile Include="Assets\Scripts\Interactables\ObstacleTogglePosition.cs" />
     <Compile Include="Assets\Scripts\Interactables\AccessComputer.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
-    <Compile Include="Assets\Scripts\AccessCodeManager.cs" />
-    <Compile Include="Assets\Scripts\Ship\ShipStatus.cs" />
+    <Compile Include="Assets\Scripts\Player\AccessCodeManager.cs" />
+    <Compile Include="Assets\Scripts\Player\Ship\ShipStatus.cs" />
     <Compile Include="Assets\Scripts\UI\FuelSliderDisplay.cs" />
-    <Compile Include="Assets\Scripts\Character\CharacterStatus.cs" />
-    <Compile Include="Assets\Scripts\Character\CharacterCollisionParser.cs" />
-    <Compile Include="Assets\Scripts\Ship\ShipUpgradeManager.cs" />
-    <Compile Include="Assets\Scripts\PlayerControlStateManager.cs" />
-    <Compile Include="Assets\Scripts\Ship\ShipMovement.cs" />
-    <Compile Include="Assets\Scripts\Ship\ShipCollisionParser.cs" />
+    <Compile Include="Assets\Scripts\Player\Character\CharacterStatus.cs" />
+    <Compile Include="Assets\Scripts\Player\Character\CharacterCollisionParser.cs" />
+    <Compile Include="Assets\Scripts\Player\Ship\ShipUpgradeManager.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerControlStateManager.cs" />
+    <Compile Include="Assets\Scripts\Player\Ship\ShipMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\Ship\ShipCollisionParser.cs" />
     <Compile Include="Assets\Scripts\Hazards\Laser.cs" />
     <Compile Include="Assets\Scripts\Interactables\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Interactables\ShipDoor.cs" />
-    <Compile Include="Assets\Scripts\Character\CharacterInteractionsTracker.cs" />
-    <Compile Include="Assets\Scripts\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\Player\Character\CharacterInteractionsTracker.cs" />
+    <Compile Include="Assets\Scripts\Player\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\UI\UIUtility.cs" />
+    <Compile Include="Assets\Scripts\Interactables\DialogueInteractableHandler.cs" />
+    <Compile Include="Assets\Scripts\UI\DialogueScriptableObject.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

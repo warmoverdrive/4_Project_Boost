@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerControlStateManager : MonoBehaviour
 {
-    public enum ControlState { Ship, Character };
+    public enum ControlState { Ship, Character, Dialogue };
 
     [SerializeField] ControlState controlState = ControlState.Ship;
     [SerializeField] PlayerInput inputManager;
@@ -20,6 +20,8 @@ public class PlayerControlStateManager : MonoBehaviour
     [SerializeField] GameObject character;
     [SerializeField] CinemachineVirtualCamera charCam;
 
+    ControlState previousControlState = ControlState.Character;
+
     public ControlState GetControlState() => controlState;
 
 	private void Start()
@@ -28,7 +30,16 @@ public class PlayerControlStateManager : MonoBehaviour
             Disembark();
         if (controlState == ControlState.Ship)
             OnEmbark();
+        if (controlState == ControlState.Dialogue)
+            OnEmbark();
+
+        DialogueInteractableHandler.PlayerInDialogue += OnDialogue;
 	}
+
+	private void OnDestroy()
+	{
+        DialogueInteractableHandler.PlayerInDialogue -= OnDialogue;
+    }
 
 	public void OnDisembark(InputAction.CallbackContext context)
 	{
@@ -62,4 +73,22 @@ public class PlayerControlStateManager : MonoBehaviour
         character.GetComponent<Rigidbody>().velocity = Vector3.zero;
         character.SetActive(true);
     }
+
+    private void OnDialogue(bool isInDialogue)
+	{
+        if (isInDialogue)
+		{
+            previousControlState = controlState;
+            controlState = ControlState.Dialogue;
+            inputManager.SwitchCurrentActionMap("UI");
+		}
+		else
+		{
+            controlState = previousControlState;
+            if (controlState == ControlState.Character)
+                inputManager.SwitchCurrentActionMap("Character");
+            else
+                inputManager.SwitchCurrentActionMap("Ship");
+        }
+	}
 }
